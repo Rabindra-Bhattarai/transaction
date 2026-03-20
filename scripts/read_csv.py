@@ -105,3 +105,11 @@ print(customer_summary.sort_values('total_amount', ascending=False).head(10))
 # Total amount per customer per day
 daily_customer = df.groupby(['customer_id', 'date'])['amount'].sum().reset_index()
 print(daily_customer.head(10))
+
+# Add month column
+df['month'] = df['date'].dt.to_period('M')
+
+# Total amount per customer per month
+monthly_customer = df.groupby(['customer_id', 'month'])['amount'].sum().reset_index()
+print(monthly_customer.head(10))
+
