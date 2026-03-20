@@ -36,3 +36,9 @@ print(df[['transaction_id', 'amount']])
 #now lets save the clean and filtered data back to csv
 
 df_clean.to_csv("data\cleaned_transactions.csv", index=False)
+
+#total amount by type
+# print(df.groupby('type')['amount'].sum())
+
+# transaction per customer
+# print(df.groupby('customer_id')['transaction_id'].count())
