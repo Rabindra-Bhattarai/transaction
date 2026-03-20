@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 df = pd.read_csv(r"D:\transaction\data\transactions.csv", encoding="utf-8")
 
@@ -55,3 +56,20 @@ print(df.groupby('date')['amount'].sum())
 
 # Monthly totals
 print(df.groupby(df['date'].dt.month)['amount'].sum())
+
+
+# # Barc chart: total amount by type
+# df.groupby('type')['amount'].sum().plot(kind='bar')
+# plt.title("Total Amount by Transaction Type")
+# plt.xlabel("Transaction Type")
+# plt.ylabel("Amount")
+# plt.show()
+
+# # Line chart: daily totals
+# df.groupby('date')['amount'].sum().plot(kind='line')
+# plt.title("Daily Transaction Totals")
+# plt.xlabel("Date")
+# plt.ylabel("Amount")
+
+
+df.groupby('type')['amount'].sum().to_csv("data/amount_by_type.csv")
