@@ -58,18 +58,23 @@ print(df.groupby('date')['amount'].sum())
 print(df.groupby(df['date'].dt.month)['amount'].sum())
 
 
-# # Barc chart: total amount by type
-# df.groupby('type')['amount'].sum().plot(kind='bar')
-# plt.title("Total Amount by Transaction Type")
-# plt.xlabel("Transaction Type")
-# plt.ylabel("Amount")
-# plt.show()
+# Barc chart: total amount by type
+df.groupby('type')['amount'].sum().plot(kind='bar')
+plt.title("Total Amount by Transaction Type")
+plt.xlabel("Transaction Type")
+plt.ylabel("Amount")
+plt.show()
 
-# # Line chart: daily totals
-# df.groupby('date')['amount'].sum().plot(kind='line')
-# plt.title("Daily Transaction Totals")
-# plt.xlabel("Date")
-# plt.ylabel("Amount")
+# Line chart: daily totals
+df.groupby('date')['amount'].sum().plot(kind='line')
+plt.title("Daily Transaction Totals")
+plt.xlabel("Date")
+plt.ylabel("Amount")
 
 
 df.groupby('type')['amount'].sum().to_csv("data/amount_by_type.csv")
+
+
+# Count transactions per customer
+txn_count = df.groupby('customer_id')['transaction_id'].count().sort_values(ascending=True)
+print(txn_count.head(10))   
