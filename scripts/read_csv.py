@@ -95,9 +95,13 @@ print(customer_summary.sort_values('total_amount', ascending=False).head(10))
 
 
 # Bar chart of top 5 customers by total amount
-top_customers = txn_amount.head(5)
-top_customers.plot(kind='bar')
-plt.title("Top 5 Customers by Total Amount")
-plt.xlabel("Customer ID")
-plt.ylabel("Total Amount")
-plt.show()
+# top_customers = txn_amount.head(5)
+# top_customers.plot(kind='bar')
+# plt.title("Top 5 Customers by Total Amount")
+# plt.xlabel("Customer ID")
+# plt.ylabel("Total Amount")
+# plt.show()
+
+# Total amount per customer per day
+daily_customer = df.groupby(['customer_id', 'date'])['amount'].sum().reset_index()
+print(daily_customer.head(10))
