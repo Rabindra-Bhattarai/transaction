@@ -83,3 +83,12 @@ print(txn_count.head(10))
 # Sum of amounts per customer
 txn_amount = df.groupby('customer_id')['amount'].sum().sort_values(ascending=False)
 print(txn_amount.head(10))   # top 10 customers by spending
+
+
+# Combine count and total amount
+customer_summary = df.groupby('customer_id').agg({
+    'transaction_id': 'count',
+    'amount': 'sum'
+}).rename(columns={'transaction_id': 'txn_count', 'amount': 'total_amount'})
+
+print(customer_summary.sort_values('total_amount', ascending=False).head(10))
