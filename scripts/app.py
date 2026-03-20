@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 
 # Load data
-df = pd.read_csv(r"D:/transaction/data/transactions.csv", encoding="utf-8")
+df = pd.read_csv(r"data/transactions.csv", encoding="utf-8")
 
 # Clean data
 df['amount'] = df['amount'].fillna(0)
