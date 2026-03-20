@@ -20,6 +20,9 @@ df_clean =df.dropna()
 df['amount']=df["amount"].fillna(0)
 df['customer_id'] = df['customer_id'].fillna(-1)
 
+# now lets convert date column to proper datetime
+df['date'] = pd.to_datetime(df['date'], dayfirst=True)
+
 # filter rows
 # only deposit
 deposit = df[df['type']== 'deposit']
@@ -37,8 +40,18 @@ print(df[['transaction_id', 'amount']])
 
 df_clean.to_csv("data\cleaned_transactions.csv", index=False)
 
-#total amount by type
-# print(df.groupby('type')['amount'].sum())
+# Total amount by transaction type
+print(df.groupby('type')['amount'].sum())
 
-# transaction per customer
-# print(df.groupby('customer_id')['transaction_id'].count())
+# Number of transactions per customer
+print(df.groupby('customer_id')['transaction_id'].count())
+
+# Average transaction amount per type
+print(df.groupby('type')['amount'].mean())
+
+
+# Daily totals
+print(df.groupby('date')['amount'].sum())
+
+# Monthly totals
+print(df.groupby(df['date'].dt.month)['amount'].sum())
