@@ -122,3 +122,14 @@ plt.title("Customer 101 Daily Transactions")
 plt.xlabel("Date")
 plt.ylabel("Amount")
 plt.show()
+
+
+# Pivot table for multiple customers
+pivot = daily_customer.pivot(index='date', columns='customer_id', values='amount').fillna(0)
+
+# Plot top 3 customers
+pivot[[101, 102, 103]].plot(kind='line')
+plt.title("Daily Totals for Top 3 Customers")
+plt.xlabel("Date")
+plt.ylabel("Amount")
+plt.show()
