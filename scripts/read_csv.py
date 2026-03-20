@@ -113,3 +113,12 @@ df['month'] = df['date'].dt.to_period('M')
 monthly_customer = df.groupby(['customer_id', 'month'])['amount'].sum().reset_index()
 print(monthly_customer.head(10))
 
+import matplotlib.pyplot as plt
+
+# Example: plot customer 101’s activity over time
+cust_101 = daily_customer[daily_customer['customer_id'] == 101]
+plt.plot(cust_101['date'], cust_101['amount'], marker='o')
+plt.title("Customer 101 Daily Transactions")
+plt.xlabel("Date")
+plt.ylabel("Amount")
+plt.show()
